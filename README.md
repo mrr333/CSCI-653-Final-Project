@@ -12,4 +12,4 @@ Ferroelectric tunnel junctions can offer low power and non-destructive readout f
 </ul>
 ## 2. Expected Result
 Simulations results exhibit a high asymmetry in carrier transport due to CIPS polarization, which is likely related to the observed tunneling barrier enhancement. Better understanding of the asymmetry in the charge carrier transport will give valuable insight into the design of novel ferroelectric tunneling junctions.
-! ![Screen Shot 2022-09-02 at 11 38 13 PM](https://user-images.githubusercontent.com/47875715/188259080-761854fd-9c2e-418f-8b72-256a575fd2dd.png)
+![Screen Shot 2022-09-02 at 11 38 13 PM](https://user-images.githubusercontent.com/47875715/188259080-761854fd-9c2e-418f-8b72-256a575fd2dd.png)
