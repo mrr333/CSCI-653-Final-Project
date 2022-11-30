@@ -1,15 +1,15 @@
 # Asymmetric Carrier Dynamics in Ferroelectric van der Waals Layers
 This is a readme file for Asymmetric Carrier Dynamics in Ferroelectric van der Waals Layers project.
 ## 0. Problem Description
-Functional layered materials (LMs) consisting of atomically thin van der Waals (vdW) layers are revolutionizing materials science. 
+*Functional layered materials (LMs) consisting of atomically thin van der Waals (vdW) layers are revolutionizing materials science. 
 
-LMs not only possess outstanding electronic, optical, magnetic and chemical properties but also offer the possibility of tuning these properties in desired ways by building vdW heterostructures composed of unlimited combinations of layers.
+*LMs not only possess outstanding electronic, optical, magnetic and chemical properties but also offer the possibility of tuning these properties in desired ways by building vdW heterostructures composed of unlimited combinations of layers.
 
-Atomically thin vdW materials possessing ferroelectricity have promising applications in ultralow-power electronics. 
+*Atomically thin vdW materials possessing ferroelectricity have promising applications in ultralow-power electronics. 
 
-A notable example is giant barrier-height modulation in a ferroelectric tunnel junction made of copper indium thiophosphate (CuInP2S6), which displays stable ferroelectricity down to atomic thickness and room temperature.
+*A notable example is giant barrier-height modulation in a ferroelectric tunnel junction made of copper indium thiophosphate (CuInP2S6), which displays stable ferroelectricity down to atomic thickness and room temperature.
 
-While this modulation was ascribed to asymmetric electronic-band profile due to electric polarization, electronic dynamics underlying asymmetric carrier transport is largely unexplored.
+*While this modulation was ascribed to asymmetric electronic-band profile due to electric polarization, electronic dynamics underlying asymmetric carrier transport is largely unexplored.
 
 
 ## 1. Simulation Method
