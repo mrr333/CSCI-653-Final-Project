@@ -1,16 +1,16 @@
 # Asymmetric Carrier Dynamics in Ferroelectric van der Waals Layers
 This is a readme file for Asymmetric Carrier Dynamics in Ferroelectric van der Waals Layers project.
 ## 0. Problem Description
-<ul>Functional layered materials (LMs) consisting of atomically thin van der Waals (vdW) layers are revolutionizing materials science. 
+Functional layered materials (LMs) consisting of atomically thin van der Waals (vdW) layers are revolutionizing materials science. 
 
-<ul>LMs not only possess outstanding electronic, optical, magnetic and chemical properties but also offer the possibility of tuning these properties in desired ways by building vdW heterostructures composed of unlimited combinations of layers.
+LMs not only possess outstanding electronic, optical, magnetic and chemical properties but also offer the possibility of tuning these properties in desired ways by building vdW heterostructures composed of unlimited combinations of layers.
 
-<ul>Atomically thin vdW materials possessing ferroelectricity have promising applications in ultralow-power electronics. 
+Atomically thin vdW materials possessing ferroelectricity have promising applications in ultralow-power electronics. 
 
-<ul>A notable example is giant barrier-height modulation in a ferroelectric tunnel junction made of copper indium thiophosphate (CuInP2S6), which displays stable ferroelectricity down to atomic thickness and room temperature.
+A notable example is giant barrier-height modulation in a ferroelectric tunnel junction made of copper indium thiophosphate (CuInP2S6), which displays stable ferroelectricity down to atomic thickness and room temperature.
 
-<ul>While this modulation was ascribed to asymmetric electronic-band profile due to electric polarization, electronic dynamics underlying asymmetric carrier transport is largely unexplored.
-![image](https://user-images.githubusercontent.com/47875715/204925799-497da082-7f9d-474f-ab2e-b98ef7e72c8f.png)
+While this modulation was ascribed to asymmetric electronic-band profile due to electric polarization, electronic dynamics underlying asymmetric carrier transport is largely unexplored.
+
 
 ## 1. Simulation Method
 <ul> 
