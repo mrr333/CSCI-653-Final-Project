@@ -13,13 +13,11 @@ This is a readme file for Asymmetric Carrier Dynamics in Ferroelectric van der W
 
 
 ## 1. Simulation Method
-<ul> 
-<li>nonadiabatic molecular dynamics (NAQMD) 
-<li> projected-augmented wave (PAW)
-<li> density functional theory (DFT)
-<li> generalized gradient approximation (GGA)
-<li>  Time-dependent density functional theory (TDDFT)
-</ul>
+- Static Electronic Calculations: **Density functional theory (DFT) 
+
+- Dynamic Simulations: **Non-adiabatic quantum molecular dynamics (NAQMD)** based on **time-dependent density functional theory (TDDFT)** at a temperature of **300 K** under the **canonical ensemble (NVT)
+
+
 
 ## 2. Expected Result
 Simulations results exhibit a high asymmetry in carrier transport due to CIPS polarization, which is likely related to the observed tunneling barrier enhancement. Better understanding of the asymmetry in the charge carrier transport will give valuable insight into the design of novel ferroelectric tunneling junctions.
