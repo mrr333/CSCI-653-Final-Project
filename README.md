@@ -1,7 +1,17 @@
 # Asymmetric Carrier Dynamics in Ferroelectric van der Waals Layers
 This is a readme file for Asymmetric Carrier Dynamics in Ferroelectric van der Waals Layers project.
 ## 0. Problem Description
-Ferroelectric tunnel junctions can offer low power and non-destructive readout for memory based applications, but are currently limited by their low tunneling electro-resistance (TER). Recent experimental study has shown greatly enhanced tunneling barrier and TER of hetrostacks based on ferroelectric CuInP2S6 (CIPS). However, microscopic mechanisms underlying the observed asymmetric charge carrier transport in CIPS remain unknown. We perform nonadiabatic quantum molecular dynamics simulations to study carrier dynamics in a graphene-CIPS interface under high electric fields. 
+<ul>Functional layered materials (LMs) consisting of atomically thin van der Waals (vdW) layers are revolutionizing materials science. 
+
+<ul>LMs not only possess outstanding electronic, optical, magnetic and chemical properties but also offer the possibility of tuning these properties in desired ways by building vdW heterostructures composed of unlimited combinations of layers.
+
+<ul>Atomically thin vdW materials possessing ferroelectricity have promising applications in ultralow-power electronics. 
+
+<ul>A notable example is giant barrier-height modulation in a ferroelectric tunnel junction made of copper indium thiophosphate (CuInP2S6), which displays stable ferroelectricity down to atomic thickness and room temperature.
+
+<ul>While this modulation was ascribed to asymmetric electronic-band profile due to electric polarization, electronic dynamics underlying asymmetric carrier transport is largely unexplored.
+![image](https://user-images.githubusercontent.com/47875715/204925799-497da082-7f9d-474f-ab2e-b98ef7e72c8f.png)
+
 ## 1. Simulation Method
 <ul> 
 <li>nonadiabatic molecular dynamics (NAQMD) 
