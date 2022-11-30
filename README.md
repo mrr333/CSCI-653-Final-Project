@@ -15,7 +15,7 @@ This is a readme file for Asymmetric Carrier Dynamics in Ferroelectric van der W
 ## 1. Simulation Method
 - Static Electronic Calculations: **Density functional theory (DFT)**
 
-- Dynamic Simulations: **Non-adiabatic quantum molecular dynamics (NAQMD)** based on **time-dependent density functional theory (TDDFT)** at a temperature of **300 K** under the **canonical ensemble (NVT)
+- Dynamic Simulations: **Non-adiabatic quantum molecular dynamics (NAQMD)** based on **time-dependent density functional theory (TDDFT)** at a temperature of **300 K** under the **canonical ensemble (NVT)**
 
 
 
