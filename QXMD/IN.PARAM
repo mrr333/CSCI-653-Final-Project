@@ -1,0 +1,808 @@
+---(Input-parameter file for program package 'pwp')-------------------
+                              :
+*parallel                     :
+(QM-nodes)                    :
+ 6  6  12                    : (npx, npy, npz)
+(k-points)                    :
+  1                           : (npk)
+(MD-nodes)                    :
+  1  1  1                     : (md_npx, md_npy, md_npz)
+*end                          :
+                              :
+                              :
+*start(on/off)                :
+(how of it)                   :
+ .false.                      : (lstart) .true. = restart
+*end                          :
+                              :
+                              :
+*TDDFT-MD                     :
+(how of it)                   :
+ .false.                      : (ltddft) .true. = execute MD based on TDDFT
+                              :
+(FSSH)                        :
+ .true.                       : (ltddft_fssh) .true. = FSSH, .false. = Ehrenfest
+                              :
+(FSSH-switch)                 :
+ .true.                       : (lfssh_switch) .true.  = switching aveilable
+                              :                .false. = cccupations are fixed
+(FSSH-ground-state-SCF)       :
+ .true.                       : (lfssh_gsscf) .true.  = SCF with the ground  state
+                              :               .false. = SCF with the excited state
+(FSSH-charge mixing)          : only for lfssh_gsscf = .true.
+   1                          : (imxchg_fssh) = 0:non, 1:Pulay, 2:Anderson, 3:simple
+   0.9d0  0.6d0               : (aslh_fssh, bslh_fssh)
+   0.8d0  0.13d0              : (aslh_fssh, bslh_fssh)
+                              :
+(FSSH-random-initialize)      :
+ .true.                       : (lfssh_random) .true. = manual, .false. = automatic
+ 1149784823.000000            : (rseed_fssh) only for lfssh_random = .true.                              :
+(Boltzmann factor for upwd tr):
+ .true.                       : (lfssh_boltzmn) .true. = multiply the upward probability
+                              :                          by the Boltzmann factor
+(velocity scaling)            :
+ .false.                      : (lfssh_vscale) .true. = scale velocity when switching
+   0.0d0                      : (tminimum) minimum temperature in [K]
+                              :
+(time step)                   :
+   0.04d0                     : (dttddft) time step in [Hartree a.u.] in TDDFT-FSSH
+                              :
+(parallel calculation)        :
+ .true.                       : (lfssh_parallel) .true. = do parallel calculation
+                              :
+(restart)                     :
+ .false.                      : (ltddft_start) .true. = restart
+ .true.                       : (ltddft_start) .true. = restart
+                              :
+(NSC force)                   : Non-self consistent (NSC) force
+ .true.                       : (ltddft_nscforce) .true.=on / .false. = off
+                              :
+(occupations)                 : for lrtddft = .false.
+    2                         : (nocc_change) # of occupations to be changed
+  357   0.0  1.0              : (numband, occ_new) band index, occupations(up&down)
+  476   1.0  0.0              : (numband, occ_new) band index, occupations(up&down)
+                              :
+(broadening)                  :
+   0d0                        : (tdbroad) width of Gaussian broadening in [Kelvin]
+                              :           0.0: no broadening
+*end                          :
+                              :
+                              :
+*PAW                          :
+(how of it)                   :
+ .true.                       : (lpaw)  .true.  = PAW method
+                              :         .false. = pseudopotential method
+(non-spherical symmetry)      :
+ .false.                      : (lpaw_sym) .true. = full      symmetry
+                              :           .false. = spherical symmetry
+                              :
+(onsite charge mixing)        :
+    0.1d0                     : (paw_mix)
+*end                          :
+                              :
+*approximation for Exc        :
+(approximation)               :
+       2                      : (jgga) = 1:LDA, 2:GGA(PBE), 3:GGA(RPBE),
+                              :          4:GGA(revPBE), 5:vdW-DF, 6:vdW-DF2
+                              :
+(DFT-D)                       : an empirical correction for the vdW interaction
+ .true.                       : (ldftd) .true. = on, .false. = off
+*end                          :
+                              :
+*spin polarization            :
+(on/off)                      :
+   .false.                    : (lspin)  .true. = taken into account
+(initial wave functions)      : for down-spin w.f.
+   .false.                    : (lwfrand) .false. = same as up-spin,
+                              :           .true.  = by random No.
+(duplicate the up-spin state) : only for lnoncollinear = .false.
+   .true.                     : (lduplicate) .true. = duplicate w.f.
+                              :                       of the up-spin state
+                              :
+*end                          :
+                              :
+                              :
+*SCF iterations               :
+(global iterations)           :
+     600                      : (iscfmx) maximum No. of global iterations
+(trial global iterations)     :
+      0                       : (itrial) No. of trial global iterations
+(trial charge mixing)         :
+   0                          : (imxchg_trial) = 0:no mixing, else:trial mixing
+   0.1,    0.64               : (aslh_trial, bslh_trial)         same as imxchg
+                              :
+(tolerances)                  :
+      5.0d-09                 : (tolpot) tolerance for total energy
+      1.0d-10                 : (tolres) tolerance for average residual
+(HC products)                 :
+   .true.                     : (lhcunt) .true. = HC products by Unitary tr.
+                              :
+(charge mixing)               :
+   1                          : (imxchg) = 0:non, 1:Pulay, 2:Anderson, 3:simple
+   0.2,    0.64               : (aslh, bslh)
+(number of mixing)            :
+   10                         : (itratn)
+                              :
+(convergence stabilizer)      : 
+     10                       : (nstabi)
+     10.d0                    : (xstabi)
+     Note: If zansa2 < zansa2/xstabi at nstabi iterations before,
+           set lreset = .false.
+*end                          :
+                              :
+                              :
+*Kohn-Sham equation           :
+(how of it)                   :
+      1                       : (ihldam) = 1:CG, 2:RMM-DIIS
+(tolerance)                   :
+      1.d-11                  : (toleig) tolerance for Kohn-Sham equation
+(threshold for w.f. direction):
+      0.1                     : (threinn) threshold for direction of new w.f.
+(iteration)                   :
+     10                       : (itermx) maximum No. of iterations
+(empty-band iteration)        :
+      4                       : (iteremx) maximum No. of iterations
+                              :           for empty bands
+(trial global iterations)     :
+     10                       : (kstrial) No. of trial global iterations
+                              :           with itermx = iteremx = 1
+*end                          :
+                              :
+                              :
+*Poisson equation             : only for cluster calculations
+(multigrid level)             :
+  2                           : (multg)
+(tolerance)                   : tolerance energy in a.u. for one electron
+  1.d-11                     : (tolcg)
+(preconditioner)              :
+  0.4d0                       : (weigrd)
+(differentiation)             : order of numerical differentiation
+  6                           : (nd2v)
+(mesh for serial calculation) :
+ 14  14  14                   : (msrhmx, msrhmy, msrhmz)
+*end                          :
+                              :
+                              :
+*molecular dynamics           :
+(how of it)                   :
+   1                          : (ifmd)
+                              :   0:non, 1:optimization, 2:NVE, 3:NVT, 4:NPT
+(time step)                   :
+  0.8d0    1000                 : (dtmd, nstop) time step, total steP
+  0.05d0   2000                 : (dtmd, nstop) time step, total step
+  0.1d0    10                 : (dtmd, nstop) time step, total step
+(initial step number)         :
+   0                          : (nstep_ini)   ignored, if lstart == .true.
+(temperature)                 : only for real dynamics (NVE-, NVT-, NPT-MD )
+   500.d0                     : (treq) temperature in [K]
+(check temperature)           :
+  .false.                      : (liscale) .true. = Do it !
+   25                         : (iscnum)  number of temperature check
+   20                         : (iscstp)  skip step
+(make total momentum zero)    : valid only when liscale = .true.
+  .false.                     : (lmomzero) .true. = make momentum zero
+                              :
+(optimization)                : only for structural optimization (ifmd == 1 )
+    2                         : (ioptmze)
+                              :  -1: do not optimize atomic coordinates
+                              :   0: Conjugate gradient
+                              :   1: Projected velocity Verlet
+                              :   2: Quasi-Newton method with BFGS formula
+                              :   3: RFO saddle points search
+                              :  10: Harmonic-mode analysis
+                              :
+(cell optimization)           : only for optimization (ifmd == 1 except ioptmze == 1 & 10)
+    2                         : (ioptmze_cell)
+                              :  -1: do not optimize supercell
+                              :   0: Conjugate gradient
+                              :   1: not used yet
+                              :   2: Quasi-Newton method with BFGS formula
+                              :
+(cell CG time step)           : only for Conjugate gradient method (ifmd==1 & ioptmze_cell==0)
+   0.01d0                     : (dtcellcg)
+                              :
+(stabilizer for quasi-Newton) : only for quasi-Newton method (ifmd==1 & ioptmze==2)
+   0.1d0                      : (gammamin)
+                              :
+(clear Hessian)               : only for quasi-Newton method (ifmd==1 & ioptmze==2)
+    0                         : (ibfgsclear) clear Hessian every ibfgsclear step
+                              :           if ibfgsclear == 0, Hessian is not cleared.
+                              :
+(clear cell Hessian)          : only for quasi-Newton method (ifmd==1 & ioptmze_cell==2)
+    0                         : (iclearcellh) clear Hessian every iclearcellh step
+                              :           if iclearcellh == 0, Hessian is not cleared.
+                              :
+(hybrid optimization)         : only for optimization (ifmd==1 & ioptmze>=0 & ioptmze_cell>=0 )
+  .true.                      : (lhybridopt) .true. = do structural optimization first
+    10                        : (nstep_hybrid)      time step for structural optimization
+    10                        : (nstep_hybrid_cell) time step for cell optimization
+                              :
+(displacement)                : only for Harmonic-mode analysis (ifmd==1 & ioptmze==10)
+   0.01d0                     : (hmadisp) in [a.u.]
+                              :
+(order of differentiation)    : only for Harmonic-mode analysis (ifmd==1 & ioptmze==10)
+   1                          : (nhmaord)
+                              :
+(thermostat parameters)       : only for NVT & NPT-MD (ifmd == 3, 4 )
+     1                        : (nnos)   # of thermostats
+     1                        : (nresn)  MTS steps for heat bath
+     1                        : (nyosh)  Yoshida-Suzuki decomposition step
+   5500.d0                    : (tomega) in [a.u.] (a period of fluctuation)
+ Notes for (tomega)           :
+ The frequency for the thermostat will be given by
+      omega [a.u.] = 2*pi / tomega.
+ The tomega will be determined from the period of VAF.
+ If you are not aware of it, try a value,
+      100 * dtmd in [a.u.], as an initial guess.
+                              :
+(pressure)                    : only for NPT-MD (ifmd == 4 ) & ioptmze_cell >= 0
+   0.d0                       : (hpext) pressure in [GPa]
+                              :
+(barostat parameters)         : only for NPT-MD (ifmd == 4 )
+   14436.d0                    : (tbomega) in [a.u.] (a period of fluctuation)
+     16.7d0                   : (blkmod)  in [GPa]  (bulk modulus)
+                              :
+(restriction for MD cell)     :
+   2                          : (irstrct)
+          0: no restriction (triclinic)
+          1: cubic          a  = b  = c, alpha = beta = gamma = 90
+          2: orthorhombic   a /= b /= c, alpha = beta = gamma = 90
+          3: tetragonal     a  = b /= c, alpha = beta = gamma = 90
+          4: monoclinic     a /= b /= c, alpha = beta = 90, gamma /= 90
+          5: hexagonal      a  = b /= c, alpha = beta = 90, gamma  = 120
+          6: trigonal       a  = b  = c, alpha = beta = gamma /= 90
+         10: by symmetry opearations (set automatically, when lsymop=.true. & irstrct==0)
+                              :
+(MD cell edge restriction)    :
+ .false.                      : (lcell_rstrct(1)) .true. = fix the length of L1
+ .false.                      : (lcell_rstrct(2)) .true. = fix the length of L2
+ .false.                      : (lcell_rstrct(3)) .true. = fix the length of L3
+                              :
+(output data)                 : only for MD nodes
+    1                         : (ioskip)  skip step
+ .true.                      : (locoor) .true. = output scaled coordinates
+ .true.                       : (lovelo) .true. = output scaled velocities
+ .true.                      : (loforc) .true. = output scaled forces
+                              :
+(charge estimation)           :
+   1                          : (ichest) = # of previous steps
+                              :
+(wavefunction estimation)     :
+   1                         : (ihest)  = # of previous steps
+                              :
+(ASPC charge estimation)      :
+ .true.                       : (laspc_chg) .true. = ASPC predictor
+                              :            .false.= usual extrapolation
+(ASPC wavefunction estimation):
+ .true.                       : (laspc_wv) .true. = ASPC predictor
+                              :            .false.= subspace alignment
+                              :
+(ASPC acceleration)           :
+ .false.                      : (laspc) .true. = do ASPC
+                              :
+(ASPC parameter for corrector):
+   1.d0                       : (aspc_corr) 0.d0 = default
+                              :
+(ASPC mixing charge)          :
+   0.8d0  0.64d0              : (aslh_aspc, bslh_aspc)
+                              :
+(ASPC iterations)             :
+   1                          : (iscfmx_aspc) No. of correction step
+                              :
+(ASPC tolerance)              :
+   1.d-06                     : (tolres_aspc) tolerance for residual
+                              :
+(ASPC correction skip step)   :
+   20                         : (nskp_aspc) 0 = no coorection
+                              :
+(planewave expansion)         : only for NPT-MD (ifmd == 4 )
+   1.3d0                      : (pwscale)
+                              :
+(statistical calculation)     :
+ .false.                      : (lstat) .true. = calculate g(r) etc.
+                              :
+(tolerance)                   : tolerance for CG optimization (ifmd == 1 )
+  1.d-07                      : (tol_energy) energy/atom in [a.u.]
+  5.d-04                      : (tol_force ) max. force  in [a.u.]
+*end                          :
+                              :
+                              :
+*save data                    :
+(how of it)                   :
+ .true.                       : (lsave) .true. = save data
+(data type)                   :
+ .true.                       : (lsreal8).true.=real*8/.false.=integer*2
+*end                          :
+                              :
+*electric field               : (how of it)                   :
+   .false.                     : (lefield) .true. = apply uniform electric field
+   .false.                    : (lefield) .true. = apply uniform electric field
+(electric field)              :
+ 0.00116681428d0  0.d0  0.d0  : (efield(1:3)) 0.06  V/A
+                              :
+(sawtooth potential)          :
+   .true.                     : (lsawtooth) .true.  for isolated systems
+                              :             .false. for periodic insulator systems
+*end                          :
+			      :
+------------------------------:---------------------------------------
+*Mulliken analysis            :
+(how of it)                   :
+ .true.                       : (lmulken) .true. = Do it !
+(skip step)                   : only for molecular dynamics
+   5                          : (nskpmulk)
+(decompose overlap population):
+ .true.                       : (ldecmpovp) .true. = decompose ovp.
+(weights associated with each atom)  :
+ .true.                       : (lspdatom) .true. = output information.
+*end                          :
+                              :
+*stress calculation           : only for bulk calculations
+(how of it)                   :
+ .true.                      : (lstress) .true. = Do it !
+(skip step)                   : only for molecular dynamics
+   5                          : (nskip_stress)
+*end                          :
+                              :
+*atomic charge                :
+(how of it)                   :
+ .true.                      : (lintchg) .true. = Do it !
+(skip step)                   : only for molecular dynamics
+   5                          : (nskip_intchg)
+*end                          :
+                              :
+*dump charge density          :
+(how of it)                   :
+  .true.                     : (ldpchg)  .true. = Do it !
+(skip step)                   : only for molecular dynamics
+   5                          : (nskip_dpchg)
+(output area)                 : output area for charge density
+  1.0    0.0                  : x_min & x_max   Note: In SCALED coordinates.
+  1.0    0.0                  : y_min & y_max   Note: Whole space
+  1.0    0.0                  : z_min & z_max          if xyz_min > xyz_max.
+*end                          :
+                              :
+*dump wavefunctions           :
+(how of it)                   :
+  .false.                      : (ldpwav)  .true. = Do it !
+(bands)                       :
+   350, 500                   : (ibstt1,ibstt2) band index ( 0, 0 -> all bands)
+(skip step)                   : only for molecular dynamics
+   5                          : (nskip_dpwav)
+*end                          :
+                              :
+*dump local potential         :
+(how of it)                   :
+  .true.                      : (ldppot)  .true. = Do it !
+  .false.                     : (ldppot)  .true. = Do it !
+(average plane)               :
+   1                          : (nav_dppot) = 1:xy, 2:yz, 3:zx
+(skip step)                   : only for molecular dynamics
+   5                          : (nskip_dppot)
+(output area)                 : output area for charge density
+  1.0    0.0                  : x_min & x_max   Note: In SCALED coordinates.
+  1.0    0.0                  : y_min & y_max   Note: Whole space
+  1.0    0.0                  : z_min & z_max          if xyz_min > xyz_max.
+*end                          :
+                              :
+------------------------------:---------------------------------------
+*supercell                    :
+(unit of length)              :
+(ang)                         : (bohr) or (ang)
+                              :
+(cell vector)                 :
+12.186000000         0.0000000000         0.0000000000
+0.0000000000        29.6163600000         0.0000000000
+0.0000000000         0.0000000000        49.9949989319
+                              :
+*end                          :
+
+*vacuum                       :
+(unit of length)              :
+(ang)                        : (bohr) or (ang)
+                              :
+(how of it)                   :
+ .false.  167.5d0   :lvacuum(1),vacuum(1) (vacuum(1)< x <L1 is vacuum, if .true.)
+ .false.    0.0d0   :lvacuum(2),vacuum(2) (vacuum(2)< y <L2 is vacuum, if .true.)
+ .false.    0.0d0   :lvacuum(3),vacuum(3) (vacuum(3)< z <L3 is vacuum, if .true.)
+                              :
+(parameter in error function) :
+  0.0                         : (alpha_ldouble_grid_recip)  0.0 = automatic
+                              :  should be about 5.0/the length of cell
+*end                          :
+                              :
+*spherical region             :
+(how of it)                   :
+ .true.                       : (lsphere) .true. = use spherical region
+*end                          :                    in cluster calculations
+                              :
+*planewaves                   :
+(unit of cutoff energy)       :
+(ry)                          : (ry) or (hr) or (ev)
+(for wavefunctions)           :
+  30.0                        : (ecut)
+(for electron density)        :
+ 225.0                        : (ecutdens)
+(for soft part of density)    :
+ 160.0                        : (ecutsoft)
+*end                          :
+                              :
+*double-grid method           : in reciprocal space formalism
+(order of cardinal B spline)  :
+   7                          : (iosp) must be an odd integer
+                              :
+(unit of cutoff energy)       :
+(ry)                          : (ry) or (hr) or (ev)
+                              : cutoff energies for long-range Coulomb
+(for non-periodic direction)  :
+ 100.0                         : (ecutlong)
+(for periodic direction)      : only for surface and wire geometries
+ 100.0                         : (ecutlong_small)
+                              :
+*end                          :
+                              :
+*electronic bands             :
+(occupied bands)              :
+      2600                     : (noband)  No. of occupied bands
+(empty bands)                 :
+      50                      : (neband)  No. of empty bands
+                              :           total No.= noband + neband
+(broadening)                  :
+       3   2000.d0            : (lfermi) = 1:nonmetallic, 2:Fermi, 3:Gaussian,
+                              :   lfermi(>3):Methfessel & Paxton, order=lfermi-3
+                              : (tfermi) = electronic temp.(K), if metallic
+(charge number of ion)        :
+       0                      : (ncion)  charge number of ion
+                              :          ignored, if bulk, wire, and  surface
+*end                          :
+                              :
+------------------------------:---------------------------------------
+*atoms                        :
+(species)                     :
+  5                           : (ntype) No. of atomic species
+==============================================================================
+(atomic number)               :
+  16.0                         : (zatom)
+(pseudopotential)             :
+uspp                          : kbpp .or. uspp .or. vand .or. local
+(nonlocal potential)          :
+ .true. 1.5d0 1.25d0 0.8d0    : (lking) .true. = on, (rking, gkgmax, gkgexct)
+                              : smoothing parameters
+(local potential)             :
+ .false. 1.5d0 1.15d0 0.8d0   : (llking) .true. = on, (rlking, glkgmax, glkgexct)
+                              : smoothing parameters
+(partial core correction)     :
+ .true.   1.8d0               : (lpcc) .true. = on, (rpcc) in [a.u.]
+ .true. 1.1d0 1.15d0 0.8d0    : (lpking) .true. = on, (rpking, gpkgmax, gpkgexct)
+                              : smoothing parameters
+                              :
+(compensation-charge cutoff)  : for the PAW method only
+   1.3                        : (frac_rcomp_it)
+                              : Note: cutoff = max(r_cl)/frac_rcomp_it
+                              :
+(the number of atoms)         : No. of atoms in SUPERCELL, not in UNIT cell
+   0                          : (nhk) If zero, atomic positions are read from 
+                              :       'CONFIGURATION_FILE'.
+                              :
+(unit of length)              : only for positions
+(ang)                        : (bohr) or (ang)
+                              :
+(position file)               : Ignored, if (nhk) > 0.
+'control/IN.CONFIG'  :
+ 2                            : 1:scaled, 2:real coordinates
+ 2                            : (keyword)
+                              :
+(fix positions)               :
+ .false.                      : (lfixion) .true. = fix atomic position
+                              :           (velocities are set to zero)
+                              :
+(fictitious mass)             :
+ 1.d0                         : (ficmass) mass = watom_md * ficmass
+                              :
+ (velocity file)               : Ignored, if (nhk) > 0.
+'control/VOLOCITY_FILE'       :
+ 1                            : (keyword)
+                              :
+(Mulliken analysis)           : only when (lmulken) = .true.
+    10.d0                     : (rxmulk) maximum radius (a.u.)
+   0.d0  0.d0                 : (rdecmp) decomposition radius (a.u.) for s orbital
+   0.d0  0.d0                 : (rdecmp) decomposition radius (a.u.) for p orbital
+   0.d0  0.d0                 : (rdecmp) decomposition radius (a.u.) for d orbital
+   0.d0  0.d0                 : (rdecmp) decomposition radius (a.u.) for f orbital                          :
+                              :
+(Spherical Harmonics expansion)
+   2.3d0                      : radius (a.u.) for Ylm expansion
+                              :
+(EDA)                         :
+   2.3d0                      : radius (a.u.) for EDA
+                              :
+(atomic charge)               :
+   2.3d0                      : radius (a.u.) to calculate atomic charge
+                              :
+(end)                         :
+==============================:=======================================
+(atomic number)               :
+  15.0                         : (zatom)
+(pseudopotential)             :
+uspp                          : kbpp .or. uspp .or. vand .or. local
+(nonlocal potential)          :
+ .true. 1.5d0 1.25d0 0.8d0    : (lking) .true. = on, (rking, gkgmax, gkgexct)
+                              : smoothing parameters
+(local potential)             :
+ .false. 1.5d0 1.15d0 0.8d0   : (llking) .true. = on, (rlking, glkgmax, glkgexct)
+                              : smoothing parameters
+(partial core correction)     :
+ .true.   1.8d0               : (lpcc) .true. = on, (rpcc) in [a.u.]
+ .true. 1.1d0 1.15d0 0.8d0    : (lpking) .true. = on, (rpking, gpkgmax, gpkgexct)
+                              : smoothing parameters
+                              :
+(compensation-charge cutoff)  : for the PAW method only
+   1.3                        : (frac_rcomp_it)
+                              : Note: cutoff = max(r_cl)/frac_rcomp_it
+                              :
+(the number of atoms)         : No. of atoms in SUPERCELL, not in UNIT cell
+   0                          : (nhk) If zero, atomic positions are read from 
+                              :       'CONFIGURATION_FILE'.
+                              :
+(unit of length)              : only for positions
+(ang)                        : (bohr) or (ang)
+                              :
+(position file)               : Ignored, if (nhk) > 0.
+'control/IN.CONFIG'  :
+ 2                            : 1:scaled, 2:real coordinates
+ 3                            : (keyword)
+                              :
+(fix positions)               :
+ .false.                      : (lfixion) .true. = fix atomic position
+                              :           (velocities are set to zero)
+                              :
+(fictitious mass)             :
+ 1.d0                         : (ficmass) mass = watom_md * ficmass
+                              :
+ (velocity file)               : Ignored, if (nhk) > 0.
+'control/VOLOCITY_FILE'       :
+ 1                            : (keyword)
+                              :
+(Mulliken analysis)           : only when (lmulken) = .true.
+    10.d0                     : (rxmulk) maximum radius (a.u.)
+   0.d0  0.d0                 : (rdecmp) decomposition radius (a.u.) for s orbital
+   0.d0  0.d0                 : (rdecmp) decomposition radius (a.u.) for p orbital
+   0.d0  0.d0                 : (rdecmp) decomposition radius (a.u.) for d orbital
+   0.d0  0.d0                 : (rdecmp) decomposition radius (a.u.) for f orbital                          :
+                              :
+(Spherical Harmonics expansion)
+   2.3d0                      : radius (a.u.) for Ylm expansion
+                              :
+(EDA)                         :
+   2.3d0                      : radius (a.u.) for EDA
+                              :
+(atomic charge)               :
+   2.3d0                      : radius (a.u.) to calculate atomic charge
+                              :
+(end)                         :
+===================================================================================
+(atomic number)               :
+  29.0                         : (zatom)
+(pseudopotential)             :
+uspp                          : kbpp .or. uspp .or. vand .or. local
+(nonlocal potential)          :
+ .true. 1.5d0 1.25d0 0.8d0    : (lking) .true. = on, (rking, gkgmax, gkgexct)
+                              : smoothing parameters
+(local potential)             :
+ .false. 1.5d0 1.15d0 0.8d0   : (llking) .true. = on, (rlking, glkgmax, glkgexct)
+                              : smoothing parameters
+(partial core correction)     :
+ .true.   1.8d0               : (lpcc) .true. = on, (rpcc) in [a.u.]
+ .true. 1.1d0 1.15d0 0.8d0    : (lpking) .true. = on, (rpking, gpkgmax, gpkgexct)
+                              : smoothing parameters
+                              :
+(compensation-charge cutoff)  : for the PAW method only
+   1.3                        : (frac_rcomp_it)
+                              : Note: cutoff = max(r_cl)/frac_rcomp_it
+                              :
+(the number of atoms)         : No. of atoms in SUPERCELL, not in UNIT cell
+   0                          : (nhk) If zero, atomic positions are read from 
+                              :       'CONFIGURATION_FILE'.
+                              :
+(unit of length)              : only for positions
+(ang)                        : (bohr) or (ang)
+                              :
+(position file)               : Ignored, if (nhk) > 0.
+'control/IN.CONFIG'  :
+ 2                            : 1:scaled, 2:real coordinates
+ 4                            : (keyword)
+                              :
+(fix positions)               :
+ .false.                      : (lfixion) .true. = fix atomic position
+                              :           (velocities are set to zero)
+                              :
+(fictitious mass)             :
+ 1.d0                         : (ficmass) mass = watom_md * ficmass
+                              :
+ (velocity file)               : Ignored, if (nhk) > 0.
+'control/VOLOCITY_FILE'       :
+ 1                            : (keyword)
+                              :
+(Mulliken analysis)           : only when (lmulken) = .true.
+    10.d0                     : (rxmulk) maximum radius (a.u.)
+   0.d0  0.d0                 : (rdecmp) decomposition radius (a.u.) for s orbital
+   0.d0  0.d0                 : (rdecmp) decomposition radius (a.u.) for p orbital
+   0.d0  0.d0                 : (rdecmp) decomposition radius (a.u.) for d orbital
+   0.d0  0.d0                 : (rdecmp) decomposition radius (a.u.) for f orbital                          :
+                              :
+(Spherical Harmonics expansion)
+   2.3d0                      : radius (a.u.) for Ylm expansion
+                              :
+(EDA)                         :
+   2.3d0                      : radius (a.u.) for EDA
+                              :
+(atomic charge)               :
+   2.3d0                      : radius (a.u.) to calculate atomic charge
+                              :
+(end)                         :
+====================================================================================
+(atomic number)               :
+  49.0                         : (zatom)
+(pseudopotential)             :
+uspp                          : kbpp .or. uspp .or. vand .or. local
+(nonlocal potential)          :
+ .true. 1.5d0 1.25d0 0.8d0    : (lking) .true. = on, (rking, gkgmax, gkgexct)
+                              : smoothing parameters
+(local potential)             :
+ .false. 1.5d0 1.15d0 0.8d0   : (llking) .true. = on, (rlking, glkgmax, glkgexct)
+                              : smoothing parameters
+(partial core correction)     :
+ .true.   1.8d0               : (lpcc) .true. = on, (rpcc) in [a.u.]
+ .true. 1.1d0 1.15d0 0.8d0    : (lpking) .true. = on, (rpking, gpkgmax, gpkgexct)
+                              : smoothing parameters
+                              :
+(compensation-charge cutoff)  : for the PAW method only
+   1.3                        : (frac_rcomp_it)
+                              : Note: cutoff = max(r_cl)/frac_rcomp_it
+                              :
+(the number of atoms)         : No. of atoms in SUPERCELL, not in UNIT cell
+   0                          : (nhk) If zero, atomic positions are read from 
+                              :       'CONFIGURATION_FILE'.
+                              :
+(unit of length)              : only for positions
+(ang)                        : (bohr) or (ang)
+                              :
+(position file)               : Ignored, if (nhk) > 0.
+'control/IN.CONFIG'  :
+ 2                            : 1:scaled, 2:real coordinates
+ 5                            : (keyword)
+                              :
+(fix positions)               :
+ .false.                      : (lfixion) .true. = fix atomic position
+                              :           (velocities are set to zero)
+                              :
+(fictitious mass)             :
+ 1.d0                         : (ficmass) mass = watom_md * ficmass
+                              :
+ (velocity file)               : Ignored, if (nhk) > 0.
+'control/VOLOCITY_FILE'       :
+ 1                            : (keyword)
+                              :
+                              :
+(Mulliken analysis)           : only when (lmulken) = .true.
+    10.d0                     : (rxmulk) maximum radius (a.u.)
+   0.d0  0.d0                 : (rdecmp) decomposition radius (a.u.) for s orbital
+   0.d0  0.d0                 : (rdecmp) decomposition radius (a.u.) for p orbital
+   0.d0  0.d0                 : (rdecmp) decomposition radius (a.u.) for d orbital
+   0.d0  0.d0                 : (rdecmp) decomposition radius (a.u.) for f orbital
+                              :
+(Spherical Harmonics expansion)
+   2.3d0                      : radius (a.u.) for Ylm expansion
+                              :
+(EDA)                         :
+   2.3d0                      : radius (a.u.) for EDA
+                              :
+(atomic charge)               :
+   2.3d0                      : radius (a.u.) to calculate atomic charge
+                              :
+(end)                         :
+==============================================================================
+(atomic number)               :
+  6.0                         : (zatom)
+(pseudopotential)             :
+uspp                          : kbpp .or. uspp .or. vand .or. local
+(nonlocal potential)          :
+ .true. 1.5d0 1.25d0 0.8d0    : (lking) .true. = on, (rking, gkgmax, gkgexct)
+                              : smoothing parameters
+(local potential)             :
+ .false. 1.5d0 1.15d0 0.8d0   : (llking) .true. = on, (rlking, glkgmax, glkgexct)
+                              : smoothing parameters
+(partial core correction)     :
+ .true.   1.8d0               : (lpcc) .true. = on, (rpcc) in [a.u.]
+ .true. 1.1d0 1.15d0 0.8d0    : (lpking) .true. = on, (rpking, gpkgmax, gpkgexct)
+                              : smoothing parameters
+                              :
+(compensation-charge cutoff)  : for the PAW method only
+   1.3                        : (frac_rcomp_it)
+                              : Note: cutoff = max(r_cl)/frac_rcomp_it
+                              :
+(the number of atoms)         : No. of atoms in SUPERCELL, not in UNIT cell
+   0                          : (nhk) If zero, atomic positions are read from 
+                              :       'CONFIGURATION_FILE'.
+                              :
+(unit of length)              : only for positions
+(ang)                        : (bohr) or (ang)
+                              :
+(position file)               : Ignored, if (nhk) > 0.
+'control/IN.CONFIG'  :
+ 2                            : 1:scaled, 2:real coordinates
+ 1                            : (keyword)
+                              :
+(fix positions)               :
+ .false.                      : (lfixion) .true. = fix atomic position
+                              :           (velocities are set to zero)
+                              :
+(fictitious mass)             :
+ 1.d0                         : (ficmass) mass = watom_md * ficmass
+                              :
+ (velocity file)               : Ignored, if (nhk) > 0.
+'control/VOLOCITY_FILE'       :
+ 1                            : (keyword)
+                              :
+(Rev. Population analysis)    : only for (lmulken) = .true.
+  2                           : (nmulao)  No. of atomic orbitals
+ 00 .true.  10.d0  0.d0  0.d0 : (lmulao,lmulbsis,rxmulk,rdecmp)
+ 10 .true.  10.d0  0.d0  0.d0 : (lmulao,lmulbsis,rxmulk,rdecmp)
+ 11 .true.  10.d0  0.d0  0.d0 : (lmulao,lmulbsis,rxmulk,rdecmp)
+ 20 .true.  10.d0  0.d0  0.d0 : (lmulao,lmulbsis,rxmulk,rdecmp)
+ 21 .true.  10.d0  0.d0  0.d0 : (lmulao,lmulbsis,rxmulk,rdecmp)
+                              :
+ lmulao = 00 -> s, 10 -> p, 20 -> d, 30 -> f   0 node
+          01 -> s, 11 -> p, 21 -> d, 31 -> f   1 node
+          02 -> s, 12 -> p  ...                2 nodes
+ if lmulbsis = .false., *.pwf files are used.
+                              :
+(Spherical Harmonics expansion)
+   2.3d0                      : radius (a.u.) for Ylm expansion
+                              :
+(EDA)                         :
+   2.3d0                      : radius (a.u.) for EDA
+                              :
+(atomic charge)               :
+   2.3d0                      : radius (a.u.) to calculate atomic charge
+                              :
+(end)                         :
+==============================:=======================================
+(place c.m. on center)        :
+  .false.                     : (lplcom) .true. = place the center of mass
+                              :          on the center of supercell
+*end                          : end of setting *atoms
+------------------------------:---------------------------------------
+ *constraint condition         :
+(unit of length)              :
+(ang)                         : (bohr) or (ang)
+                              :
+(bond length constraint)      :
+   0                          : (ncbonds) No. of bonds constrained
+   1  2     2.5               : (ncbatm1, ncbatm2, cblength) atom No., length
+*end                          :
+                              :
+------------------------------:---------------------------------------
+                              :
+*Cholesky decomposition       :
+(the number of nodes)         :
+       4                      : No. of nodes for subroutines rdecmp and rinvcd
+*end                          :
+                              :
+*eigenvalue problem           :
+(the number of nodes)         :
+       4                      : No. of nodes for subroutine reigqr
+*end                          :
+                              :
+*work array                   : for subroutine untryt and sbalin
+(size of array)               :
+      1.d+07                  : (dblock) in [bytes]
+*end                          :
+                              :
+*table dimension              : for pseudopotential, PCC
+(local potential)             :
+      8192                    : (mx1loc)
+(others)                      :
+      8192                    : (mx1)
+*end                          :
+                              :
